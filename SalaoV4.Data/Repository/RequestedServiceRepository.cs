@@ -1,44 +1,31 @@
-﻿using SalaoV4.Domain.Model;
+﻿using SalaoV4.Data.Repository.Interface;
+using SalaoV4.Domain.Model;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SalaoV4.Data.Repository
 {
-    public class RequestedServiceRepository
+    public class RequestedServiceRepository : BaseRepository<RequestedService>, IEmployeeRepository
+
     {
-        private readonly Context context;
-
-        public RequestedServiceRepository()
+        public void Add(Employee entity)
         {
-            context = new Context();
+            throw new System.NotImplementedException();
         }
 
-        public void Incluir(RequestedService requestedService)
+        public void Change(Employee entity)
         {
-            context.RequestedService.Add(requestedService);
-            context.SaveChanges();
+            throw new System.NotImplementedException();
         }
 
-        public RequestedService Selecionar(int id)
+        Employee IBaseRepository<Employee>.Select(int id)
         {
-            return context.RequestedService.FirstOrDefault(x => x.Id == id);
+            throw new System.NotImplementedException();
         }
 
-        public List<RequestedService> SelecionarTudo()
+        List<Employee> IBaseRepository<Employee>.SelectAll()
         {
-            return context.RequestedService.ToList();
+            throw new System.NotImplementedException();
         }
-
-        public void Alterar(RequestedService requestedService)
-        {
-            context.RequestedService.Update(requestedService);
-            context.SaveChanges();
-        }
-        public void Excluir(int id)
-        {
-            var requestedService = Selecionar(id);
-            context.RequestedService.Remove(requestedService);
-        }
-
     }
 }

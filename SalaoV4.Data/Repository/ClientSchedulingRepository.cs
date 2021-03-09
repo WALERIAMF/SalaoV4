@@ -14,9 +14,9 @@ namespace SalaoV4.Data.Repository
                 .Include(x => x.Scheduling)
                 .ToList();
         }
-        public override void Incluir(ClientScheduling entity)
+        public override void Add(ClientScheduling entity)
         {
-            base.Incluir(entity);
+            base.Add(entity);
         }
     }
 

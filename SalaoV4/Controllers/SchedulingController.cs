@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalaoV4.Data.Repository;
+using SalaoV4.Data.Repository.Interface;
 using SalaoV4.Domain.Model;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace SalaoV4.Controllers
     [ApiController]
     public class SchedulingController : ControllerBase
     {
-        private readonly SchedulingRepository repo;
+        private readonly ISchedulingRepository repo;
         public SchedulingController()
         {
             repo = new SchedulingRepository();
@@ -21,38 +22,38 @@ namespace SalaoV4.Controllers
         [HttpGet]
         public IEnumerable<Scheduling> Get()
         {
-            return repo.SelecionarTudo();
+            return repo.SelectAll();
         }
 
 
         [HttpGet("{id}")]
         public Scheduling Get(int id)
         {
-            return repo.Selecionar(id);
+            return repo.Select(id);
         }
 
         // POST api/<ClientController1>
         [HttpPost]
         public IEnumerable<Scheduling> Post([FromBody] Scheduling scheduling)
         {
-            repo.Incluir(scheduling);
-            return repo.SelecionarTudo();
+            repo.Add(scheduling);
+            return repo.SelectAll();
         }
 
         // PUT api/<ClientController1>/5
         [HttpPut("{id}")]
         public IEnumerable<Scheduling> Put(int id, [FromBody] Scheduling scheduling)
         {
-            repo.Alterar(scheduling);
-            return repo.SelecionarTudo();
+            repo.Change(scheduling);
+            return repo.SelectAll();
         }
 
         // DELETE api/<ClientController1>/5
         [HttpDelete("{id}")]
         public IEnumerable<Scheduling> Delete(int id)
         {
-            repo.Excluir(id);
-            return repo.SelecionarTudo();
+            repo.Delete(id);
+            return repo.SelectAll();
         }
     }
 }

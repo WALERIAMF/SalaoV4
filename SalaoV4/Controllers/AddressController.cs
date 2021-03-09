@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalaoV4.Data.Repository;
+using SalaoV4.Data.Repository.Interface;
 using SalaoV4.Domain.Model;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace SalaoV4.Controllers
     [ApiController]
     public class AddressController : ControllerBase
     {
-        private readonly AddressRepository repo;
+        private readonly IAddressRepository repo;
         public AddressController()
         {
             repo = new AddressRepository();
@@ -21,37 +22,37 @@ namespace SalaoV4.Controllers
         [HttpGet]
         public IEnumerable<Address> Get()
         {
-            return repo.SelecionarTudo();
+            return repo.SelectAll();
         }
 
 
         [HttpGet("{id}")]
         public Address Get(int id)
         {
-            return repo.Selecionar(id);
+            return repo.Select(id);
         }
 
 
         [HttpPost]
         public IEnumerable<Address> Post([FromBody] Address address)
         {
-            repo.Incluir(address);
-            return repo.SelecionarTudo();
+            repo.Add(address);
+            return repo.SelectAll();
         }
 
         // PUT api/<ClientController1>/5
         [HttpPut("{id}")]
         public IEnumerable<Address> Put(int id, [FromBody] Address address)
         {
-            repo.Alterar(address);
-            return repo.SelecionarTudo();
+            repo.Change(address);
+            return repo.SelectAll();
         }
 
         [HttpDelete("{id}")]
         public IEnumerable<Address> Delete(int id)
         {
-            repo.Excluir(id);
-            return repo.SelecionarTudo();
+            repo.Delete(id);
+            return repo.SelectAll();
         }
     }
 }

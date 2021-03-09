@@ -24,29 +24,29 @@ namespace SalaoV4.Controllers
         [HttpGet("{id}")]
         public ServicesEmployee Get(int id)
         {
-            return repo.Selecionar(id);
+            return repo.Select(id);
         }
 
         [HttpPost]
         public IEnumerable<ServicesEmployee> Post([FromBody] ServicesEmployee tp)
         {
-            repo.Incluir(tp);
+            repo.Add(tp);
 
-            return repo.SelecionarTudo();
+            return repo.SelectAll();
         }
 
         [HttpPut]
         public IEnumerable<ServicesEmployee> Put([FromBody] ServicesEmployee tp)
         {
-            repo.Alterar(tp);
-            return repo.SelecionarTudo();
+            repo.Change(tp);
+            return repo.SelectAll();
         }
 
         [HttpDelete("{id}")]
         public IEnumerable<ServicesEmployee> Delete(int id)
         {
-            repo.Excluir(id);
-            return repo.SelecionarTudo();
+            repo.Delete(id);
+            return repo.SelectAll();
         }
     }
 }

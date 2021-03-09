@@ -1,10 +1,11 @@
 ﻿using Minha1Conexao.Domain;
+using SalaoV4.Data.Repository.Interface;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SalaoV4.Data.Repository
 {
-    public class BaseRepository<T> where T : class, IEntity
+    public class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
     {
         protected readonly Context contexto;
         public BaseRepository()
@@ -12,33 +13,38 @@ namespace SalaoV4.Data.Repository
             contexto = new Context();
         }
 
-        public virtual void Incluir(T entity)
+        public virtual void Add(T entity)
         {
             contexto.Set<T>().Add(entity);
             contexto.SaveChanges();
         }
 
-        public void Alterar(T entity)
+        public void Change(T entity)
         {
             contexto.Set<T>().Update(entity);
             contexto.SaveChanges();
         }
 
-        public T Selecionar(int id)
+        public T Select(int id)
         {
             return contexto.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
-        public List<T> SelecionarTudo()
+        public List<T> SelectAll()
         {
             return contexto.Set<T>().ToList();
         }
 
-        public void Excluir(int id)
+        public void Delete(int id)
         {
-            var entity = Selecionar(id);
+            var entity = Select(id);
             contexto.Set<T>().Remove(entity);
             contexto.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            contexto.Dispose();
         }
     }
 }

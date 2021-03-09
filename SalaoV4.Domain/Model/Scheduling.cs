@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Minha1Conexao.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace SalaoV4.Domain.Model
 {
-    public class Scheduling
+    public class Scheduling : IEntity
     {
 
         public int Id { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalaoV4.Data.Repository;
+using SalaoV4.Data.Repository.Interface;
 using SalaoV4.Domain.Model;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace SalaoV4.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeRepository repo;
+        private readonly IEmployeeRepository repo;
         public EmployeeController()
         {
             repo = new EmployeeRepository();
@@ -21,38 +22,38 @@ namespace SalaoV4.Controllers
         [HttpGet]
         public IEnumerable<Employee> Get()
         {
-            return repo.SelecionarTudo();
+            return repo.SelectAll();
         }
 
 
         [HttpGet("{id}")]
         public Employee Get(int id)
         {
-            return repo.Selecionar(id);
+            return repo.Select(id);
         }
 
         // POST api/<ClientController1>
         [HttpPost]
         public IEnumerable<Employee> Post([FromBody] Employee employee)
         {
-            repo.Incluir(employee);
-            return repo.SelecionarTudo();
+            repo.Add(employee);
+            return repo.SelectAll();
         }
 
         // PUT api/<ClientController1>/5
         [HttpPut("{id}")]
         public IEnumerable<Employee> Put(int id, [FromBody] Employee employee)
         {
-            repo.Alterar(employee);
-            return repo.SelecionarTudo();
+            repo.Change(employee);
+            return repo.SelectAll();
         }
 
         // DELETE api/<ClientController1>/5
         [HttpDelete("{id}")]
         public IEnumerable<Employee> Delete(int id)
         {
-            repo.Excluir(id);
-            return repo.SelecionarTudo();
+            repo.Delete(id);
+            return repo.SelectAll();
         }
     }
 }

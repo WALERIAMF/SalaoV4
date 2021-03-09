@@ -15,9 +15,9 @@ namespace SalaoV4.Data.Repository
                 .ToList();
         }
 
-        public override void Incluir(ClientEmployee entity)
+        public override void Add(ClientEmployee entity)
         {
-            base.Incluir(entity);
+            base.Add(entity);
         }
     }
 }

@@ -18,9 +18,9 @@ namespace SalaoV4.Data.Repository
                 .ToList();
         }
 
-        public override void Incluir(RequestServicesEmployee entity)
+        public override void Add(RequestServicesEmployee entity)
         {
-            base.Incluir(entity);
+            base.Add(entity);
         }
 
         public static implicit operator RequestServicesEmployeeRepository(RequestServicesEmployee v)

@@ -1,6 +1,8 @@
-﻿namespace SalaoV4.Domain.Model
+﻿using Minha1Conexao.Domain;
+
+namespace SalaoV4.Domain.Model
 {
-    public class Address
+    public class Address : IEntity
     {
         public int Id { get; set; }
         public string Logradouro { get; set; }

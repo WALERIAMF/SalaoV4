@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalaoV4.Data.Repository;
+using SalaoV4.Data.Repository.Interface;
 using SalaoV4.Domain.Model;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace SalaoV4.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly ClientRepository repo;
+        private readonly IClientRepository repo;
         public ClientController()
         {
             repo = new ClientRepository();
@@ -21,38 +22,38 @@ namespace SalaoV4.Controllers
         [HttpGet]
         public IEnumerable<Client> Get()
         {
-            return repo.SelecionarTudo();
+            return repo.SelectAll();
         }
 
 
         [HttpGet("{id}")]
         public Client Get(int id)
         {
-            return repo.Selecionar(id);
+            return repo.Select(id);
         }
 
         // POST api/<ClientController1>
         [HttpPost]
         public IEnumerable<Client> Post([FromBody] Client client)
         {
-            repo.Incluir(client);
-            return repo.SelecionarTudo();
+            repo.Add(client);
+            return repo.SelectAll();
         }
 
         // PUT api/<ClientController1>/5
         [HttpPut("{id}")]
         public IEnumerable<Client> Put(int id, [FromBody] Client client)
         {
-            repo.Alterar(client);
-            return repo.SelecionarTudo();
+            repo.Change(client);
+            return repo.SelectAll();
         }
 
         // DELETE api/<ClientController1>/5
         [HttpDelete("{id}")]
         public IEnumerable<Client> Delete(int id)
         {
-            repo.Excluir(id);
-            return repo.SelecionarTudo();
+            repo.Delete(id);
+            return repo.SelectAll();
         }
     }
 }

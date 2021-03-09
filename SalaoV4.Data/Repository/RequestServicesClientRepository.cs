@@ -15,9 +15,9 @@ namespace SalaoV4.Data.Repository
                 .ToList();
         }
 
-        public override void Incluir(RequestServicesClient entity)
+        public override void Add(RequestServicesClient entity)
         {
-            base.Incluir(entity);
+            base.Add(entity);
         }
 
     }
